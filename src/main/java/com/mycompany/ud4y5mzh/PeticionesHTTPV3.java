@@ -13,6 +13,7 @@ import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Path;
+import java.util.Scanner;
 
 public class PeticionesHTTPV3 {
 
@@ -58,13 +59,19 @@ public class PeticionesHTTPV3 {
 
     public static void main(String[] args) {
         try {
-            String termino = "origen";
+            Scanner sc = new Scanner(System.in);
+            System.out.print("Escriba el término: ");
+            String termino = sc.nextLine();
+            System.out.print("Indique la página: ");
+            int page = sc.nextInt();
+            sc.nextLine();
             System.out.println("Término que se va a buscar: " + termino);
+            System.out.println("Página: " + page);
 
             String esquema = "https://";
 
             String servidor = "www.themoviedb.org/search/tv";
-            String recurso = "?query=" + URLEncoder.encode(termino.toLowerCase() + "page=1", StandardCharsets.UTF_8.name());
+            String recurso = "?query=" + URLEncoder.encode(termino.toLowerCase() + "&page="+page, StandardCharsets.UTF_8.name());
 
             String path = "C:/Descargas/" + termino + ".html";
 
